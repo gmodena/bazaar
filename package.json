@@ -1,0 +1,46 @@
+{
+  "name": "header-bidding-capture",
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "scripts": {
+    "test": "./node_modules/karma/bin/karma start --single-run --browsers ChromeHeadless karma.conf.js",
+    "webpack": "webpack",
+    "webext-build": "./node_modules/web-ext/bin/web-ext build"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^5.1.1",
+    "eslint": "^6.8.0",
+    "karma": "^4.4.1",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-coverage": "^2.0.1",
+    "karma-qunit": "^4.0.0",
+    "karma-webpack": "^4.0.2",
+    "karma-sinon-chrome": "^0.2.0",
+    "puppeteer": "^2.1.0",
+    "qunit": "^2.9.3",
+    "sinon-chrome": "^3.0.1",
+    "webpack": "^4.41.5",
+    "webpack-webext-plugin": "github:rpl/webpack-webext-plugin"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "package.json": "^2.0.1",
+    "web-ext": "2.7.0",
+    "webextension-polyfill": "^0.5.0",
+    "webpack-cli": "^3.3.10",
+    "pouchdb": "^7.2.1",
+    "pouchdb-browser": "^7.2.1",
+    "uuid": "^3.4.0"
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "debug": "true"
+        }
+      ]
+    ]
+  }
+}

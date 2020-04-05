@@ -1,0 +1,31 @@
+{
+
+  "manifest_version": 2,
+  "name": "Collect bids",
+  "description": "Collect prebidjs auctions outcomes",
+  "version": "1.0",
+
+  "icons": {
+    "48": "icons/block.svg",
+    "96": "icons/block.svg"
+  },
+
+  "applications": {
+    "gecko": {
+      "strict_min_version": "57.0"
+    }
+  },
+  "background": {
+    "scripts": [
+      "js/browser-polyfill.js",
+      "js/index.js"
+    ]
+  },
+  "devtools_page": "devtools/devtools-page.html",
+  "browser_action": {
+    "default_icon": "icons/block.svg",
+    "default_title": "Prebid Auction",
+    "default_popup": "popup/popup.html"
+  },
+  "permissions": ["storage", "webRequest", "webNavigation", "tabs", "webRequestBlocking", "<all_urls>"]
+}
