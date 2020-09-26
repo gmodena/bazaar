@@ -46,7 +46,12 @@ The resulting `estension-dist` can be manually installed on [Firefox]() and [Chr
 
 Alternatively, the extension can be tested using the [web-ext](https://github.com/mozilla/web-ext) tool with
 ```
-$ web-ext run
+$ web-ext run --target=firefox-desktop
+```
+
+ro
+```
+$ web-ext run --target=chromium
 ```
 
 # Data collection and analysis
