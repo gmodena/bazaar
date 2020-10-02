@@ -14,22 +14,24 @@ function setPopupData(data) {
 
         return html
     }
-    try {
-        if  (! data.hasOwnProperty("bidders")) { throw "Received invalid data" } 
-        let prebidBidders = document.getElementById('prebid-bidders');
-        var message = "No Prebid.js adapter found on page"
+    if (data) {
+        try {
+            if  (! data.hasOwnProperty("bidders")) { throw "Received invalid data" } 
+            let prebidBidders = document.getElementById('prebid-bidders');
+            var message = "No Prebid.js adapter found on page"
 
-        if  (data["bidders"].length > 0) {
-            message = `Prebid partners on page: <br/>`
-            message += toHtmlList(data["bidders"]);
-        } 
-        
-        prebidBidders.innerHTML += message
+            if  (data["bidders"].length > 0) {
+                message = `Prebid partners on page: <br/>`
+                message += toHtmlList(data["bidders"]);
+            }
+            
+            prebidBidders.innerHTML += message
 
-        document.getElementById('prebid-stats-button')
-        .addEventListener('click', buildStatsUI);
-    } catch(e) {
-        console.log(e)
+            document.getElementById('prebid-stats-button')
+            .addEventListener('click', buildStatsUI);
+        } catch(e) {
+            console.log(e)
+        }
     }
 }
 
