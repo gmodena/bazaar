@@ -49,7 +49,7 @@ Alternatively, the extension can be tested using the [web-ext](https://github.co
 $ web-ext run --target=firefox-desktop
 ```
 
-ro
+or target Chromium with
 ```
 $ web-ext run --target=chromium
 ```
