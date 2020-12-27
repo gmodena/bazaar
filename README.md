@@ -49,9 +49,9 @@ Alternatively, the extension can be tested using the [web-ext](https://github.co
 $ web-ext run --target=firefox-desktop
 ```
 
-ro
+or target Chromium with
 ```
-$ web-ext run --target=chromium
+$ web-ext run --target=chromium --chromium-binary $CHROME_BIN
 ```
 
 # Data collection and analysis
