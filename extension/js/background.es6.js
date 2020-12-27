@@ -8,7 +8,6 @@ const auctions = window.auctions = new Map()
 
 function captureRequestToAdserver(requestInfo) {
     if (!requestInfo) return
-
     let tabId = requestInfo.tabId
     var pb = window.auctions.get(tabId)
 
@@ -21,9 +20,13 @@ function captureRequestToAdserver(requestInfo) {
         
         pb = new prebid.Auction(documentUrl)
     }
-    let url = decodeURIComponent(requestInfo.url)
-    if (pb.push(url))
-        window.auctions.set(tabId, pb)
+    try {
+        let url = decodeURIComponent(requestInfo.url)
+        if (pb.push(url))
+          window.auctions.set(tabId, pb)
+      } catch (error) {
+          console.log(error)
+      }
 }
 
 
