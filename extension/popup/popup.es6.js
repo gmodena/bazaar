@@ -98,18 +98,12 @@ function buildStatsUI() {
 }
 
 
-function getTab(callback) {
-    browser.tabs.query({active: true, lastFocusedWindow: true}, function(t) { 
-        callback(t[0]); })
-}
-
-getTab(function (tab) {
+browser.tabs.query({active: true, lastFocusedWindow: true}).then(tabs => {
     browser.runtime.sendMessage({
         type: Events.BID_REQUEST,
-        tabId: tab.id,
-        url: tab.url
-    }, (response) => {
+        tabId: tabs[0].id,
+        url: tabs[0].url
+    }).then(response => {
         setPopupData(response)
     })
-})
-
+}).catch(error => `Something went wrong while communicating with background script ${error.message}`)
