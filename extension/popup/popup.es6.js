@@ -26,13 +26,12 @@ function setPopupData(data) {
             }
             
             prebidBidders.innerHTML += message
-
-            document.getElementById('prebid-stats-button')
-            .addEventListener('click', buildStatsUI);
         } catch(e) {
             console.log(e)
         }
     }
+    document.getElementById('prebid-stats-button')
+            .addEventListener('click', buildStatsUI);
 }
 
 
