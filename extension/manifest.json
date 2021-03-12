@@ -4,12 +4,16 @@
   "name": "Collect bids",
   "description": "Collect prebidjs auctions outcomes",
   "version": "1.0",
-
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "addon@example.com",
+      "strict_min_version": "42.0"
+    }
+  },
   "icons": {
     "48": "icons/block.svg",
     "96": "icons/block.svg"
   },
-
   "background": {
     "scripts": [
       "js/browser-polyfill.js",
@@ -21,6 +25,9 @@
     "default_icon": "icons/block.svg",
     "default_title": "Prebid Auction",
     "default_popup": "popup/popup.html"
+  },
+  "options_ui": {
+    "page": "options/options.html"
   },
   "permissions": ["storage", "webRequest", "webNavigation", "tabs", "webRequestBlocking", "<all_urls>"]
 }

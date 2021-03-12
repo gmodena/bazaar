@@ -16,6 +16,21 @@ popup_config = {
     },
 }
 
+options_config = {
+    mode: 'development',
+    devtool: 'inline-source-map',
+    optimization: {
+        minimize: false
+    },
+    entry: {
+        options: "./extension/options/options.es6.js"
+    },
+    output: {
+        path: path.resolve(__dirname, "extension/options/"),
+        filename: "./[name].js"
+    },
+}
+
 devtools_config = {
     mode: 'development',
     devtool: 'inline-source-map',
@@ -53,6 +68,6 @@ extension_config = {
      ]
 }
 
-module.exports = [extension_config, devtools_config, popup_config];
+module.exports = [extension_config, devtools_config, popup_config, options_config];
 
 
