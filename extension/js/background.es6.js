@@ -1,9 +1,8 @@
 "use strict";
 
-const prebid = require('./auction.es6');
+const prebid = require('./auction.es6')
 const events = require('./events.es6')
 const storage = require('./storage.es6')
-
 const auctions = window.auctions = new Map()
 
 function captureRequestToAdserver(requestInfo) {
@@ -22,11 +21,12 @@ function captureRequestToAdserver(requestInfo) {
     }
     try {
         let url = decodeURIComponent(requestInfo.url)
-        if (pb.push(url))
-          window.auctions.set(tabId, pb)
-      } catch (error) {
-          console.log(error)
-      }
+        if (pb.push(url)) {
+            window.auctions.set(tabId, pb)
+        }
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 
@@ -49,3 +49,14 @@ browser.runtime.onMessage.addListener(events.dispatch)
 browser.runtime.onInstalled.addListener(function(details) {
      storage.init()
  });
+
+browser.storage.onChanged.addListener(function(change) {
+    if ('couchdbConf' in change) {
+         let couch = change["couchdbConf"]["newValue"]
+        let uri = couch["db_uri"]
+        let db_live_replication = couch["db_live_replication"]
+        if (uri != "") {
+            storage.replicate(uri, db_live_replication)
+        }
+    }
+ })

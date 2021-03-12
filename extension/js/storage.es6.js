@@ -1,13 +1,10 @@
 const { v4: uuidv4 } = require('uuid');
 const PouchDB = require('pouchdb').default;
 
-const remoteDbHost = 'http://localhost:5984'
 const PrebidLogDb = 'prebidlog'
 const PrebidStatsView = 'stats'
-const remoteDbUri = `${remoteDbHost}/${PrebidLogDb}`
-
 const db = new PouchDB(PrebidLogDb)
-const remoteDb = new PouchDB(remoteDbUri)
+var replication = null
 
 let loggerMixin = {
     log(doc) {
@@ -50,15 +47,24 @@ let init = function() {
     }).catch(function (err) {
         console.log(err)
     });
-
-    setupReplication(db, remoteDb)
 }
 
-let setupReplication = function(local, remote) {
-    local.replicate.to(remote).on('complete', function() {
-        console.log(`Replication ${PrebidLogDb} to ${remoteDbUri}`)
+let replicate = function(uri, live=false) {
+    console.log(uri, live)
+    let remote = PouchDB(uri)
+
+    if (replication) {
+        replication.cancel()
+    }
+
+    let retry = live // if live replication, than retry connecting on failure
+    replication = db.replicate.to(remote, {
+        live: live,
+        retry: retry
+    }).on('complete', function() {
+        console.log(`${PrebidLogDb}: replicating.`)
     }).on('error', function(err) {
-        console.log(`Replication to ${remoteDbUri} failed.`, err)
+        console.log(`${PrebidLogDb}: replication failed.`, err)
     });
 }
 
@@ -93,5 +99,6 @@ let stats = {
 module.exports = {
     init: init,
     loggerMixin: loggerMixin,
-    stats: stats
+    stats: stats,
+    replicate: replicate
 }
