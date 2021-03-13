@@ -11,15 +11,15 @@ function captureRequestToAdserver(requestInfo) {
     var pb = window.auctions.get(tabId)
 
     if (!pb) {
+        pb = new prebid.Auction(requestInfo.originUrl)
+    }
+    try {
         let documentUrl = ""
         if (requestInfo.hasOwnProperty("frameAncestors") && requestInfo.frameAncestors.length > 0) 
             documentUrl = requestInfo.frameAncestors.slice(-1)[0].url
         else 
             documentUrl = requestInfo.url
         
-        pb = new prebid.Auction(documentUrl)
-    }
-    try {
         let url = decodeURIComponent(requestInfo.url)
         if (pb.push(url)) {
             window.auctions.set(tabId, pb)
