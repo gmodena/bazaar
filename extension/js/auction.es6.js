@@ -59,7 +59,7 @@ class Auction {
 
         if (bidder) {
             this.setBidder(bidder)
-            this.log({ auctionId: this.auctionId, referrer: this.url, bidder: bidder })
+            this.log({ auctionId: this.auctionId, referrer: this.url, request: requestUrl, bidder: bidder })
             return true
         }
         return false
