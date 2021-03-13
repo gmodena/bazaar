@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <style>
+      .checkbox::after {
+        display:block;
+        clear:both;
+        content:"";
+      }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      <form>
+        <label for="db_uri">CouchDB connection URI string<input type="text" id="db_uri"/></label>
+        <div class="checkbox">
+          <label for="db_live_replication">Live replication<input type="checkbox" id="db_live_replication"></label>
+        </div>
+        <button type="submit">Replicate</button>
+      </form>
+      <script src="options.js"></script>
+    </div>
+  </body>
+</html>
