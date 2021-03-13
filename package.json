@@ -6,7 +6,8 @@
   "scripts": {
     "test": "./node_modules/karma/bin/karma start --single-run --browsers ChromeHeadless karma.conf.js",
     "webpack": "webpack",
-    "webext-build": "./node_modules/web-ext/bin/web-ext build"
+    "webext-build": "./node_modules/web-ext/bin/web-ext build",
+    "build": "npm run webpack; npm run webext-build; "
   },
   "devDependencies": {
     "copy-webpack-plugin": "^5.1.1",

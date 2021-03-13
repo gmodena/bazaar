@@ -38,8 +38,7 @@ $ npm install
 Build the extension with:
 
 ```
-$ npm run webpack
-$ npm run webext-build
+$ npm run build
 ```
 
 The resulting `estension-dist` can be manually installed on [Firefox]() and [Chrome/Chromium]().
