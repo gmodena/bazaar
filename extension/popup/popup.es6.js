@@ -80,14 +80,12 @@ browser.tabs.query({active: true, lastFocusedWindow: true}).then(tabs => {
                         <h3>${props.bidders.heading}</h3>
                         <ul>
                             ${bidders.map(function(bidder) {
-                                console.log(bidder)
                                 return `<li>${bidder.key} ${bidder.value}</li>`;
                                 }).join('')}
                         </ul>
                         <h3>${props.winners.heading}</h3>
                         <ul>
                             ${winners.map(function(winner) {
-                                console.log(winner)
                                 return `<li>${winner.key} ${winner.value}</li>`;
                                 }).join('')}
                         </ul>
