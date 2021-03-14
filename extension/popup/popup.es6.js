@@ -22,14 +22,17 @@ Popup.prototype.render = async function () {
     this.elem.innerHTML = await this.template(this.data);
 };
 
-let Bidders = async function() {
-    let bidders = await storage.stats.getBiddersCount(numberOfBidders)
-    return bidders['rows'].sort(compare).slice(0, numberOfBidders)
+let StatsLoader = async function(fn, k) {
+    let data = await fn(k)
+    return data['rows'].sort(compare).slice(0, k)
+}
+
+let Bidders = async function(k) {
+    return StatsLoader(storage.stats.getBiddersCount, k)
 };
 
-let Winners = async function() {
-    let winners = await storage.stats.getWinnersCount(numberOfBidders)
-    return winners['rows'].sort(compare).slice(0, numberOfBidders)
+let Winners = async function(k) {
+    return StatsLoader(storage.stats.getWinnersCount, k)
 };
 
 browser.tabs.query({active: true, lastFocusedWindow: true}).then(tabs => {
@@ -74,8 +77,8 @@ browser.tabs.query({active: true, lastFocusedWindow: true}).then(tabs => {
                     }
                 },
                 template: async function (props) {
-                    let bidders = await props.bidders.data()
-                    let winners = await props.winners.data()
+                    let bidders = await props.bidders.data(numberOfBidders)
+                    let winners = await props.winners.data(numberOfBidders)
                     return `
                         <h3>${props.bidders.heading}</h3>
                         <ul>
