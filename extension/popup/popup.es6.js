@@ -56,7 +56,7 @@ browser.tabs.query({active: true, lastFocusedWindow: true}).then(tabs => {
                     <h3>${props.heading}</h3>
                     <ul>
                         ${props.bidders.map(function (bidder) {
-                            return `<li>${bidder}</li>`;
+                            return `<li>${bidder[0]}</li>`;
                         }).join('')}
                     </ul>`;
             }
